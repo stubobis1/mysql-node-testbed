@@ -1,0 +1,4 @@
+https://buddy.works/guides/how-dockerize-node-application
+https://docs.docker.com/compose/wordpress/#define-the-project (sql)
+https://github.com/Osedea/nodock/tree/master/_examples/2-nodes (wtf)
+https://gist.github.com/wesleybliss/29d4cce863f5964a3eb73c42501d99e4 (mongodb)
