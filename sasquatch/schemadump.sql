@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `Sightings`;
 
 CREATE TABLE `Sightings` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `description` text NULL,
+  `desc` text NULL,
   `lat` DOUBLE NULL,
   `long` DOUBLE NULL,
   `time` DATETIME NULL,
