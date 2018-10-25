@@ -15,7 +15,6 @@ let _log = true;
 
 let dbOpts = {};
 
-
 app.get('/manage', async (req, res) => {
     let id = req.query.id;
     if (!id) {
@@ -32,7 +31,7 @@ app.post('/manage', async (req, res) => {
 
     if (_log) {
         console.log('params:', params);
-        console.log('received PUT request');
+        console.log('received POST request');
     }
     //TODO: params validation
     let response = await sql.getInsertQueryPromise(params, connection);
@@ -64,39 +63,19 @@ app.delete('/manage', async (req, res) => {
     }
 });
 
-function GetHaversineDistance(lat1, long1, lat2, long2) {
-    //gotten from https://www.movable-type.co.uk/scripts/latlong.html
-
-    let R = 3959e3; //6371e3; // metres
-    let φ1 = lat1.toRadians();
-    let φ2 = lat2.toRadians();
-    let Δφ = (lat2 - lat1).toRadians();
-    let Δλ = (long2 - long1).toRadians();
-
-    let a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-        Math.cos(φ1) * Math.cos(φ2) *
-        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return R * c;
-}
-
 app.get('/related', async (req, res) => {
-    //change 3959 with 6371 to do kilometers
-    //from https://stackoverflow.com/questions/4687312/querying-within-longitude-and-latitude-in-mysql
+    let target;
+    let id = req.query.id;
+    if (!id) {
+        res.send({error: "required param: ID"});
+    }
+    else {
+        target = (await sql.getSelectQueryPromise(id))[0];
+        let distance = Number.parseFloat(req.query.maxdistance) || 20;
+        let limit = Number.parseFloat(req.query.limit) || 25;
+        res.send(await sql.getNearQueryPromise(target, distance, limit));
+    }
 
-    let params = req.query;
-    let target = await sql.getSelectQueryPromise(params.id);
-    let lat = params;
-    let lng = 1;
-    let distance = 20;
-    let limit = 25;
-
-    let query = `SELECT id, (3959 * acos(cos(radians(${lat})) * cos(radians(lat)) * cos(radians(long) - radians(${long})) + sin(radians(${lat})) * sin(radians(lat)))) AS distance
-                 FROM markers
-                 HAVING distance < 25
-                 ORDER BY distance
-                 LIMIT 0 , 20;`;
 });
 
 //Launch listening server on port 8081
