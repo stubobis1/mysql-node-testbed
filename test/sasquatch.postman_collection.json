@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "26777163-a493-4fb5-a86e-b8f13b5ec48a",
+		"name": "sasquatch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "manage",
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/manage?id=46",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"manage"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "46"
+								}
+							]
+						},
+						"description": "get"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "46",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/manage?id=46",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"manage"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "46"
+								}
+							]
+						},
+						"description": "get"
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "desc",
+									"value": "desc",
+									"type": "text"
+								},
+								{
+									"key": "lat",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "long",
+									"value": "-111",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "2018-05-08 05:36:47",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "test,another,sassh",
+									"type": "text"
+								}
+							]
+						},
+						"url": "localhost:8081/manage",
+						"description": "get"
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "desc",
+									"value": "WEPORIUWPEOIRU",
+									"type": "text"
+								},
+								{
+									"key": "lat",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "long",
+									"value": "-111",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "2018-05-08 05:36:47",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "test,another,sassh",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "78",
+									"type": "text"
+								}
+							]
+						},
+						"url": "localhost:8081/manage",
+						"description": "get"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "related",
+			"item": [
+				{
+					"name": "getRelated",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/manage?id=46",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"manage"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "46"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "distance",
+			"item": [
+				{
+					"name": "getDistance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/manage?id=46",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"manage"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "46"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

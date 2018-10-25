@@ -73,11 +73,11 @@ function getInsertQueryPromise(values, options){
 function getUpdateQueryPromise(id, values, options){
     let opts = Object.assign({}, options, dbOpts);
     let setValues = [];
-    values.desc ? setValues.push(`t.\`desc\` = '${params.desc}'`) : "";
-    values.lat ? setValues.push(`t.\`lat\`   = ${params.lat}`) : "";
-    values.long ? setValues.push(`t.\`long\` = ${params.long}`) : "";
-    values.time ? setValues.push(`t.\`time\` = DATE('${params.time}')`) : "";
-    values.tags ? setValues.push(`t.\`tags\` = '${params.tags}'`) : "";
+    values.desc ? setValues.push(`t.\`desc\` = '${values.desc}'`) : "";
+    values.lat ? setValues.push(`t.\`lat\`   = ${values.lat}`) : "";
+    values.long ? setValues.push(`t.\`long\` = ${values.long}`) : "";
+    values.time ? setValues.push(`t.\`time\` = DATE('${values.time}')`) : "";
+    values.tags ? setValues.push(`t.\`tags\` = '${values.tags}'`) : "";
     let sets = setValues.join(',');
 
     let sql =
