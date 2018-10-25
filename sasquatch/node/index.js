@@ -64,6 +64,22 @@ app.delete('/manage', async (req, res) => {
     }
 });
 
+function GetHaversineDistance(lat1, long1, lat2, long2) {
+    //gotten from https://www.movable-type.co.uk/scripts/latlong.html
+
+    let R = 3959e3; //6371e3; // metres
+    let φ1 = lat1.toRadians();
+    let φ2 = lat2.toRadians();
+    let Δφ = (lat2 - lat1).toRadians();
+    let Δλ = (long2 - long1).toRadians();
+
+    let a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c;
+}
 
 app.get('/related', async (req, res) => {
     //change 3959 with 6371 to do kilometers
@@ -76,14 +92,27 @@ app.get('/related', async (req, res) => {
     let distance = 20;
     let limit = 25;
 
-    let query = `SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( ${lat} ) ) * cos( radians( ${lng} ) - radians(-122) ) + sin( radians(37) ) * sin( radians( ${lat} ) ) ) ) AS distance FROM sightings HAVING distance < ${distance} ORDER BY distance LIMIT 0 , ${limit};`;
+    let query = `SELECT id, (3959 * acos(cos(radians(${lat})) * cos(radians(lat)) * cos(radians(long) - radians(${long})) + sin(radians(${lat})) * sin(radians(lat)))) AS distance
+                 FROM markers
+                 HAVING distance < 25
+                 ORDER BY distance
+                 LIMIT 0 , 20;`;
 });
 
 //Launch listening server on port 8081
 
 
 app.listen(port, function () {
-    sql.startSQLConnection();
+    sql.startSQLConnection(
+        {
+            connectionSettings : {
+                host: process.env.MYSQL_HOST,
+                user: process.env.MYSQL_USER,
+                password: process.env.MYSQL_PASSWORD,
+                database: process.env.MYSQL_DATABASE,
+            }
+        }
+    );
     console.log(`app listening on port ${port}!`);
 });
 

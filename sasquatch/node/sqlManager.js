@@ -6,12 +6,8 @@ let dbOpts = {};
 
 function startSQLConnection(options){
     options = options || {};
-    dbOpts.connectionSettings = Object.assign({
-        host: process.env.MYSQL_HOST,
-        user: process.env.MYSQL_USER,
-        password: process.env.MYSQL_PASSWORD,
-        database: process.env.MYSQL_DATABASE,
-    }, options);
+    dbOpts = Object.assign({}, options);
+    dbOpts.connectionSettings = Object.assign({}, options.connectionSettings);
     dbOpts.db = dbOpts.connectionSettings.db;
     dbOpts.tbl = options.tbl || "Sightings";
     dbOpts.connection = mysql.createConnection(dbOpts.connectionSettings);
