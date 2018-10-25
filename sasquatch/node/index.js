@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 
 let connection;
 let port = 8081;
-let _log = true;
 
 app.get('/manage/:id', async (req, res) => {
     try {
@@ -26,8 +25,7 @@ app.post('/manage', async (req, res) => {
     try {
         let params = req.body; //TODO: params validation
         let response = await sql.getInsertQueryPromise(params, connection);
-        if (_log) {console.log('response:', response);}
-        res.send(response);
+        res.send({message: "Success!", response: response});
     }
     catch(e){res.send(e.message)}
 });
@@ -36,7 +34,8 @@ app.put('/manage/:id', async (req, res) => {
     try {
         let params = req.body;
         let id = req.params.id;
-        res.send(await sql.getUpdateQueryPromise(id, params));
+        let response = await sql.getUpdateQueryPromise(id, params);
+        res.send({message: "Success!", response: response});
     }
     catch(e){res.send(e.message)}
 });
@@ -45,7 +44,7 @@ app.delete('/manage/:id', async (req, res) => {
     try {
         let id = req.params.id;
         let response = await sql.getDeleteQueryPromise(id);
-        res.send(response);
+        res.send({message: "Success!", response: response});
     }
     catch(e){res.send(e.message)}
 });
@@ -83,6 +82,7 @@ app.get('/distance', async (req, res) => {
 app.listen(port, function () {
     sql.startSQLConnection(
         {
+            tbl: "sightings",
             connectionSettings : {
                 host: process.env.MYSQL_HOST,
                 user: process.env.MYSQL_USER,

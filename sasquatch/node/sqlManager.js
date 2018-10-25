@@ -7,14 +7,13 @@ function startSQLConnection(options){
     _log = options.log !== undefined ? options.log : _log;
     options = options || {};
     dbOpts = Object.assign({}, options);
-    dbOpts.connectionSettings = Object.assign({}, options.connectionSettings);
     dbOpts.db = dbOpts.connectionSettings.database;
-    dbOpts.tbl = options.tbl || "Sightings";
+    dbOpts.tbl = options.tbl || "sightings";
     dbOpts.connection = mysql.createConnection(dbOpts.connectionSettings);
     dbOpts.connection.connect(function (err) {
         if (err) {
             console.log('unable to connect to MySQL - this is probably because is isn\'t up yet');
-            throw error('unable to connect to MySQL');
+            throw new Error('unable to connect to MySQL');
         } else {
             console.log('Connected to MySQL - Thread ' + dbOpts.connection.threadId);
         }

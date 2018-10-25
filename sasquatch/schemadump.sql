@@ -23,9 +23,9 @@
 
 # Dump of table Sightings
 # ------------------------------------------------------------
-DROP TABLE IF EXISTS `Sightings`;
+DROP TABLE IF EXISTS `sightings`;
 
-CREATE TABLE `Sightings` (
+CREATE TABLE `sightings` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `desc` text NULL,
   `lat` DOUBLE NULL,

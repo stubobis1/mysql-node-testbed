@@ -10,6 +10,18 @@
 			"item": [
 				{
 					"name": "Get",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fbb124cf-ee1c-49a1-8106-502f822565da",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -18,19 +30,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8081/manage?id=46",
+							"raw": "localhost:8081/manage/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
-								"manage"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "46"
-								}
+								"manage",
+								"1"
 							]
 						},
 						"description": "get"
@@ -60,19 +67,14 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8081/manage?id=46",
+							"raw": "localhost:8081/manage/46",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
-								"manage"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "46"
-								}
+								"manage",
+								"46"
 							]
 						},
 						"description": "get"
@@ -116,7 +118,7 @@
 								},
 								{
 									"key": "tags",
-									"value": "test,another,sassh",
+									"value": "test,another",
 									"type": "text"
 								}
 							]
@@ -152,7 +154,7 @@
 							"urlencoded": [
 								{
 									"key": "desc",
-									"value": "WEPORIUWPEOIRU",
+									"value": "WEPORIUWPEOIRU THERES A SASQUATCHHH!!!!",
 									"type": "text"
 								},
 								{
@@ -172,24 +174,26 @@
 								},
 								{
 									"key": "tags",
-									"value": "test,another,sassh",
+									"value": "brown,another,sasquatch",
 									"type": "text"
 								},
 								{
 									"key": "id",
 									"value": "78",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:8081/manage",
+							"raw": "localhost:8081/manage/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
-								"manage"
+								"manage",
+								"1"
 							]
 						},
 						"description": "get"
@@ -211,18 +215,60 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8081/manage?id=46",
+							"raw": "localhost:8081/related/47?limit=25&maxdistance=2000",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
-								"manage"
+								"related",
+								"47"
 							],
 							"query": [
 								{
-									"key": "id",
-									"value": "46"
+									"key": "limit",
+									"value": "25"
+								},
+								{
+									"key": "maxdistance",
+									"value": "2000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "distance",
+			"item": [
+				{
+					"name": "getDistance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/distance?id1=42&id2=43",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"distance"
+							],
+							"query": [
+								{
+									"key": "id1",
+									"value": "42"
+								},
+								{
+									"key": "id2",
+									"value": "43"
 								}
 							]
 						}
