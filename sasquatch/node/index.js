@@ -13,8 +13,6 @@ let connection;
 let port = 8081;
 let _log = true;
 
-let dbOpts = {};
-
 app.get('/manage', async (req, res) => {
     let id = req.query.id;
     if (!id) {
@@ -75,9 +73,19 @@ app.get('/related', async (req, res) => {
         let limit = Number.parseFloat(req.query.limit) || 25;
         res.send(await sql.getNearQueryPromise(target, distance, limit));
     }
-
 });
 
+app.get('/distance', async (req, res) => {
+    let id1 = req.query.id1;
+    let id2 = req.query.id2;
+    if (!id1 && id2) {
+        res.send({error: "required param: IDs"});
+    }
+    else {
+        let response = await sql.getDistance(id1, id2);
+        res.send({Distance: response});
+    }
+});
 //Launch listening server on port 8081
 
 
