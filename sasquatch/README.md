@@ -1,3 +1,5 @@
+The app uses port 8081, and is documented with a postman collection.
+
 I spent about 4:30 on this.
 
 1) the CRUD Operations completed. 
