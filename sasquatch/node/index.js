@@ -99,7 +99,7 @@ app.listen(port, function () {
 
 function exitHandler(options, exitCode) {
     console.log('exiting');
-    //
+    // sql.closeSQLConnection();
 }
 
 //do something when app is closing
